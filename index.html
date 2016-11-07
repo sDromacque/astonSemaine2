@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-init="ngName='toto'; clients=[{name: 'toto', age: 32}, {name: 'titi', age:10}, {name: 'tete', age:5}, {name: 'tata', age:12222}]">
+    <div ng-init="friends = [{name:'John', phone:'555-1276'},
+                         {name:'Mary', phone:'800-BIG-MARY'},
+                         {name:'Mike', phone:'555-4321'},
+                         {name:'Adam', phone:'555-5678'},
+                         {name:'Julie', phone:'555-8765'},
+                         {name:'Juliette', phone:'555-5678'}]"></div>
+    <h1>Formation</h1>
+
+    <input type="text" ng-model="ngName" autofocus>
+    <div>{{ ngName }}</div>
+
+    <input type="text" ng-model="ngName2">
+    <div>{{ ngName2 }}</div>
+
+    <div>{{ ngName + ngName2 }}</div>
+
+    <button ng-click="ngName=''; ngName2='';">Reset</button>
+
+
+    <br>
+    <br>
+    <br>
+    <h2>Search</h2>
+    <input type="text" ng-model="search">
+    <p>{{count.length}} personnes</p>
+
+    <table>
+        <thread>
+            <th>nom</th>
+            <th>age</th>
+        </thread>
+        <tbody>
+            <tr ng-repeat="friend in friends | filter:search as count">
+                <td>{{friend.name}}</td>
+                <td>{{friend.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--<p ng-repeat="client in clients | orderBy: '+age'">{{client.name}}, {{client.age}}</p>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</body>
+</html>
