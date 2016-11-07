@@ -5,33 +5,60 @@
     <title>Title</title>
 </head>
 <body ng-app='app' ng-controller='main'>
-
+    <ul ng-controller='menu'>
+        <li ng-repeat="link in menu"><a href={{link.url}}>{{link.label}}</a></li>
+    </ul>
     <h2>Search</h2>
-    <input type="text" ng-model="search">
+    <input type="text" ng-model="search.name" class="form-control">
     <p>{{count.length}} personnes</p>
-
-    <table>
+    <input type="checkbox" ng-click="showData = !showData">
+    <table class="table table-striped" ng-show="showData" ng-controller="table">
         <thread>
-            <th>nom</th>
-            <th>age</th>
-            <th>address</th>
-            <th>Gender</th>
+            <th>
+                <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                name
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+                age
+                <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                    address
+                    <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'gender'; sortReverse = !sortReverse">
+                    gender
+                    <span ng-show="sortType == 'gender' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'gender' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
         </thread>
         <tbody>
-            <tr ng-repeat="user in users | filter:search | filter:query as count ">
+            <tr ng-repeat="user in users |  orderBy:sortType:sortReverse |filter:search | filter:query as count">
                 <td>{{user.name}}</td>
                 <td>{{user.age}}</td>
                 <td>{{user.address}}</td>
-                <td>{{user.gender}}</td>
+                <td>{{user.gender | uppercase}}</td>
             </tr>
         </tbody>
     </table>
 
-
-    <!--<p ng-repeat="client in clients | orderBy: '+age'">{{client.name}}, {{client.age}}</p>-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="./app/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
