@@ -11,6 +11,8 @@ angular.module('app')
             });
         $scope.showData = true;
 
+        $scope.thead = ['name', 'age', 'address', 'gender'];
+
         $scope.addUser = function () {
             $scope.users.push({
                 'name': $scope.name,
