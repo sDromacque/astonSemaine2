@@ -10,6 +10,19 @@ angular.module('app')
                 $scope.users = res.data;
             });
         $scope.showData = true;
+
+        $scope.addUser = function () {
+            $scope.users.push({
+                'name': $scope.name,
+                'age': $scope.age,
+                'address': $scope.address,
+                'gender': $scope.gender
+            });
+            $scope.name = '';
+            $scope.age = '';
+            $scope.address = '';
+            $scope.gender = '';
+        }
         }
     )
     .controller('menu', function ($scope) {
@@ -21,4 +34,4 @@ angular.module('app')
     })
     .controller('table', function ($scope) {
         $scope.thead = ['name', 'age', 'address', 'gender'];
-    })
+    });
