@@ -8,8 +8,7 @@ angular.module('app')
                 controller: 'homeCtrl'
             })
             .when("/products", {
-                templateUrl : "app/views/products.html",
-                controller: 'productCtrl'
+                templateUrl : "app/views/products.html"
             });
     })
 

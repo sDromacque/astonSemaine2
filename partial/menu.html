@@ -1,5 +1,11 @@
-<ul ng-controller='menuController'>
-    <li ng-repeat="link in menu">
-        <a href="{{link.url}}">{{link.label}}</a>
-    </li>
-</ul>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+            <ul ng-controller='menuController' class="nav navbar-nav">
+                <li ng-repeat="link in menu">
+                    <a href="{{link.url}}">{{link.label}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
