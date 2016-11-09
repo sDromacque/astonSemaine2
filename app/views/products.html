@@ -27,7 +27,8 @@
                         <div class="form-group">
                             <label class="col-sm-2">Age</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="age" ng-model="age" min="3" max="99" integer required>                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
+                                <input type="number" class="form-control" name="age" ng-model="age" min="3" max="99" integer required>
+                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
                                 <p ng-show="userForm.age.$error.min || form.age.$error.max">The value must be in range 3 to 99!</p>
                             </div>
                         </div>
@@ -57,7 +58,6 @@
             </div>
         </div>
     </div>
-
 
     <table class="table table-striped" ng-show="showData">
         <thread>
