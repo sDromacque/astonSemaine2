@@ -1,0 +1,102 @@
+<div ng-controller="productCtrl">
+    <h2>Search</h2>
+    <input type="text" ng-model="search.name" class="form-control">
+    <input type="checkbox" ng-click="showData = !showData">
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUser">
+        Add new user
+    </button>
+    <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"  ng-submit="addUser()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add new user</h4>
+                </div>
+                <form class="form-horizontal" name="userForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-2">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" ng-model="name" ng-minlength="3" ng-maxlength="10" required>
+                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
+                                <p ng-show="userForm.name.$error.maxlength">Username is too long.</p>
+                                <p ng-show="userForm.name.$error.required">Username is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">Age</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="age" ng-model="age" min="3" max="99" integer required>                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
+                                <p ng-show="userForm.age.$error.min || form.age.$error.max">The value must be in range 3 to 99!</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  ng-model="address" ng-minlength="3" ng-maxlength="50" required >
+                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
+                                <p ng-show="userForm.name.$error.maxlength">Username is too long.</p>
+                                <p ng-show="userForm.name.$error.required">Username is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">Gender</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" ng-model="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped" ng-show="showData">
+        <thread>
+            <th>
+                <a href="#/products" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                    name
+                    <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#/products" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+                    age
+                    <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#/products" ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                    address
+                    <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#/products" ng-click="sortType = 'gender'; sortReverse = !sortReverse">
+                    gender
+                    <span ng-show="sortType == 'gender' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'gender' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+        </thread>
+        <tbody>
+        <tr ng-repeat="user in users |  orderBy:sortType:sortReverse |filter:search | filter:query as count">
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.gender | uppercase}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

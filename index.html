@@ -8,71 +8,8 @@
 
     <div ng-include="'partial/menu.html'"></div>
 
-    <h2>Search</h2>
-    <input type="text" ng-model="search.name" class="form-control">
-    <p>{{count.length}} personnes</p>
+    <div ng-view></div>
 
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUser">
-        Add new user
-    </button>
-    <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content"  ng-submit="addUser()">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add new user</h4>
-                </div>
-                <form class="form-horizontal" name="userForm">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-2">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" ng-model="name" ng-minlength="3" ng-maxlength="10" required>
-                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
-                                <p ng-show="userForm.name.$error.maxlength">Username is too long.</p>
-                                <p ng-show="userForm.name.$error.required">Username is required.</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2">Age</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" name="age" ng-model="age" min="3" max="99" integer required>                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
-                                <p ng-show="userForm.age.$error.min || form.age.$error.max">The value must be in range 3 to 99!</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2">Address</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control"  ng-model="address" ng-minlength="3" ng-maxlength="50" required >
-                                <p ng-show="userForm.name.$error.minlength">Username is too short.</p>
-                                <p ng-show="userForm.name.$error.maxlength">Username is too long.</p>
-                                <p ng-show="userForm.name.$error.required">Username is required.</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2">Gender</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" ng-model="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <input type="checkbox" ng-click="showData = !showData">
-
-    <div ng-include="'partial/tableUsers.html'"></div>
-
-    <!--<p ng-repeat="client in clients | orderBy: '+age'">{{client.name}}, {{client.age}}</p>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="./app/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -80,5 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 </body>
 </html>

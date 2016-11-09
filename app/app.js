@@ -1,7 +1,33 @@
-angular.module('app', []);
+angular.module('app', ["ngRoute"]);
 
 angular.module('app')
-    .controller('main', function ($scope, $http) {
+    .config(function($routeProvider) {
+        $routeProvider
+            .when("/", {
+                templateUrl : "app/views/main.html",
+                controller: 'homeCtrl'
+            })
+            .when("/products", {
+                templateUrl : "app/views/products.html",
+                controller: 'productCtrl'
+            });
+    })
+
+    .controller('main', function ($scope) {
+
+    })
+
+    .controller('menuController', function ($scope) {
+        $scope.menu = [
+            {label: "Home", url: '#/'},
+            {label: "Products", url: '#/products'},
+            {label: "Contact", url: '#/contact'}
+        ];
+    })
+    .controller('homeCtrl', function ($scope) {
+        $scope.toto = "welcome";
+    })
+    .controller('productCtrl', function ($scope, $http) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
 
@@ -25,15 +51,4 @@ angular.module('app')
             $scope.address = '';
             $scope.gender = '';
         }
-        }
-    )
-    .controller('menu', function ($scope) {
-        $scope.menu = [
-            {label: "Home", url: '/'},
-            {label: "Products", url: '/products'},
-            {label: "Contact", url: '/contact'}
-        ];
     })
-    .controller('table', function ($scope) {
-        $scope.thead = ['name', 'age', 'address', 'gender'];
-    });
