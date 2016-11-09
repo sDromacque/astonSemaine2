@@ -62,28 +62,28 @@
     <table class="table table-striped" ng-show="showData">
         <thread>
             <th>
-                <a href="#/products" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                <a href="#/users" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                     name
                     <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th>
-                <a href="#/products" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+                <a href="#/users" ng-click="sortType = 'age'; sortReverse = !sortReverse">
                     age
                     <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th>
-                <a href="#/products" ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                <a href="#/users" ng-click="sortType = 'address'; sortReverse = !sortReverse">
                     address
                     <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th>
-                <a href="#/products" ng-click="sortType = 'gender'; sortReverse = !sortReverse">
+                <a href="#/users" ng-click="sortType = 'gender'; sortReverse = !sortReverse">
                     gender
                     <span ng-show="sortType == 'gender' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'gender' && sortReverse" class="fa fa-caret-up"></span>
@@ -91,8 +91,12 @@
             </th>
         </thread>
         <tbody>
-        <tr ng-repeat="user in users |  orderBy:sortType:sortReverse |filter:search | filter:query as count">
-            <td>{{user.name}}</td>
+        <tr ng-repeat="user in users | orderBy:sortType:sortReverse | filter:search | filter:query as count">
+            <td>
+                <a ng-href="#/user/{{user._id}}">
+                    {{user.name}}
+                </a>
+            </td>
             <td>{{user.age}}</td>
             <td>{{user.address}}</td>
             <td>{{user.gender | uppercase}}</td>
