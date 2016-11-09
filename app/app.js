@@ -7,9 +7,9 @@ angular.module('app')
                 templateUrl : "app/views/main.html",
                 controller: 'homeCtrl'
             })
-            .when("/products", {
-                templateUrl : "app/views/products.html"
-            });
+            .when("/users", {
+                templateUrl : "app/views/users.html"
+            })
     })
 
     .controller('main', function ($scope) {
@@ -19,7 +19,7 @@ angular.module('app')
     .controller('menuController', function ($scope) {
         $scope.menu = [
             {label: "Home", url: '#/'},
-            {label: "Products", url: '#/products'},
+            {label: "Products", url: '#/users'},
             {label: "Contact", url: '#/contact'}
         ];
     })
