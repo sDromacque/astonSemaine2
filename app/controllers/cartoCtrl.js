@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('cartoCtrl', ['$scope', function($scope) {
+    .controller('cartoCtrl', function($scope) {
         angular.extend($scope, {
             city: {
                 lat: $scope.user.latitude,
@@ -27,4 +27,23 @@ angular.module('app')
                 }
             }
         });
-    }]);
+    })
+
+.controller('cartoAllUsersCtrl', function($scope) {
+    var userCoordinate = [];
+    $scope.users.forEach(function (user) {
+        userCoordinate.push({
+            'lat': user.latitude,
+            'lng':  user.longitude,
+            'message': user.name
+            }
+        )
+    });
+
+    angular.extend($scope, {
+        map: {
+            scrollWheelZoom: false
+        },
+        markers: userCoordinate
+    });
+});
