@@ -63,13 +63,11 @@ angular.module('app')
 
     .controller('cartoCtrl', ['$scope', function($scope) {
         angular.extend($scope, {
-
             city: {
                 lat: $scope.user.latitude,
                 lng: $scope.user.longitude,
                 zoom: 13
             },
-            events: {},
             layers: {
                 baselayers: {
                     osm: {
@@ -91,16 +89,12 @@ angular.module('app')
                 }
             }
         });
-
-
     }])
 
     .controller('productCtrl', function ($scope) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
-
         $scope.showData = true;
-
         $scope.thead = ['name', 'age', 'address', 'gender'];
 
         $scope.addUser = function () {
