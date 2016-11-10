@@ -62,15 +62,9 @@ angular.module('app')
     })
 
     .controller('cartoCtrl', ['$scope', function($scope) {
-
-        function getUser(user) {
-            return user._id === '58209960c066406e99d9b9be';
-        }
-        $scope.user = $scope.users.find(getUser);
-
-        // make map
         angular.extend($scope, {
-            san_fran: {
+
+            city: {
                 lat: $scope.user.latitude,
                 lng: $scope.user.longitude,
                 zoom: 13
@@ -86,18 +80,18 @@ angular.module('app')
                 }
             },
             defaults: {
-                scrollWheelZoom: false
+                scrollWheelZoom: true
+            },
+            markers: {
+                osloMarker: {
+                    lat: $scope.user.latitude,
+                    lng: $scope.user.longitude,
+                    message: $scope.user.name,
+                    focus: true
+                }
             }
-        })
-        $scope.markers = new Array();
-        $scope.$on("leafletDirectiveMap.click", function(event, args){
-            var leafEvent = args.leafletEvent;
-            $scope.markers.push({
-                lat: leafEvent.latlng.lat,
-                lng: leafEvent.latlng.lng,
-                draggable: true
-            });
         });
+
 
     }])
 
@@ -122,9 +116,9 @@ angular.module('app')
             $scope.gender = '';
         }
     })
-    .controller('userCtrl', function ($scope) {
-        function getUser(fruit) {
-            return fruit._id === '5820996097a10e27671a23a5';
+    .controller('userCtrl', function ($scope, $routeParams) {
+        function getUser(user) {
+            return user._id === $routeParams.id;
         }
         $scope.user = $scope.users.find(getUser);
     });
